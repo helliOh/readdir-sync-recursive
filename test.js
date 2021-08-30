@@ -12,7 +12,7 @@ const readdirSyncRecursive = current =>{
         path : current,
         isDir : true,
         children : [ 
-            ...dirs.map(dir => recursiveSearch( path.resolve(current, dir) ) ), 
+            ...dirs.map(dir => readdirSyncRecursive( path.resolve(current, dir) ) ), 
             ...normalFiles.map(normalFile => ({
                 root : false,
                 path : path.resolve(current, normalFile),
@@ -23,6 +23,6 @@ const readdirSyncRecursive = current =>{
     }
 }
 
-const test2 = recursiveSearch('.')
+const test = readdirSyncRecursive('.')
 
-test2.children.forEach(e => console.log(e))
+test.children.forEach(e => console.log(e))
